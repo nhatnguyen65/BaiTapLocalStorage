@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../img/cute.gif" type="image/gif">
+    <link rel="stylesheet" href="./style.css">
+    <title>Nguyễn Minh Nhật</title>
+</head>
+<body>
+    <header>
+        <div class="head">
+            <div class="head-logo">
+                <a href="https://sv.iuh.edu.vn" target="_blank" rel="noopener noreferrer"> 
+                    <img class="logo-img" src="../img/logo/iuh_tron_trang.png" alt="">
+                </a>
+            </div>
+            <h1 class="head-title">Menu</h1>
+        </div>
+        
+        <div class="head-btns">
+            <button class="btn btn-signup" onclick="openModal(true)">Sign Up</button>
+            <button class="btn btn-login" onclick="openModal(false)">Log In</button>
+        </div>
+
+        <div class="head-user none">
+            <div class="user-img">
+                <img src="../img/cute.gif" alt="">
+                
+                <div class="user-dropdown">
+                    <ul>
+                        <li onclick="logout()">Đăng xuất</li>
+                        <li onclick="doiMatKhau()">Đổi mật khẩu</li>
+                        <li onclick="xoaTaiKhoan()">Xoá tài khoản</li>
+                    </ul>
+                </div>
+            </div>
+            <p class="user-name">User</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="content-left">
+            <div class="content-img">
+                <img src="../img/cute.gif" alt="">
+            </div>
+        </div>
+
+        <div class="content-right">
+            <h2 class="content-hi">Chào mừng bạn đến với website của tôi 💖</h2>
+            <p class="content-text-about">Đây là trang kiểm tra bạn đã đăng ký/đăng nhập hay chưa</p>
+            <p class="content-text-btn">Hãy đăng ký/đăng nhập để biết thêm chi tiết !</p>
+            <div class="content-btns">
+                <button class="btn btn-signup" onclick="openModal(true)">Sign Up</button>
+                <button class="btn btn-login" onclick="openModal(false)">Log In</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lớp làm mờ -->
+    <div class="overlay none" onclick="closeModal()"></div>
+
+    <!-- Modal đăng ký/đăng nhập -->
+    <div class="modal none">
+        <button class="btn-close" onclick="closeModal(true)">×</button>
+        <h2 class="head-modal">Modal</h2>
+        <div class="modal-form form-name">
+            <label for="name">Username</label>
+            <input id="name" type="text">
+        </div>
+        <div class="modal-form form-password1">
+            <label for="password1">Password</label>
+            <input type="password" id="password1">
+        </div>
+        <div class="modal-form form-password3 none">
+            <label for="password3">New Password</label>
+            <input type="password" id="password3">
+        </div>
+        <div class="modal-form form-password2">
+            <label for="password2">Confirm Password</label>
+            <input type="password" id="password2">
+        </div>
+        <div class="form-btns">
+            <input class="btn" onclick="changeData(this.value)" type="button" value="button">
+        </div>
+    </div>
+    
+    
+    <script src="./main.js" async></script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+}
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+:root {
+    --trang: #FFF;
+    --hongPhanNhat: #FAD4D4;
+    --hongDaoNhe: #F8C8D0;
+    --hongPastel: #F6A6B8;
+    --hongCanhSen: #F28D99;
+}
+
+/* Thanh header */
+header {
+    height: 100px;
+    background: var(--hongPhanNhat);
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    box-shadow: 0 1px 15px var(--hongPastel);
+}
+/* Login và menu */
+header .head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-left: 10%;
+}
+.head .head-logo {
+    height: 110px;
+}
+.head .head-logo a {
+    outline: none;
+}
+.head .head-logo .logo-img {
+    /* width: 100%; */
+    height: 100%;
+    filter: drop-shadow(0 0 10px var(--hongPastel));
+}
+.head .head-title {
+    color: var(--trang);
+    text-shadow: 0 0 10px var(--hongPastel);
+}
+/* Nút login */
+header .head-btns {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-right: 10%;
+}
+.head-btns .btn {
+    white-space: nowrap;
+    font-size: 17px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: var(--hongDaoNhe);
+    background: var(--trang);
+    padding: 8px 12px;
+    border: solid 2px var(--hongDaoNhe);
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--hongPastel);
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+.head-btns .btn.btn-signup {
+    margin-right: 15px;
+}
+.head-btns .btn:hover {
+    color: var(--trang);
+    background: var(--hongCanhSen);
+    border: solid 2px var(--trang);
+}
+.head-btns .btn:active {
+    transition: all 0.1s;
+    opacity: 0.5;
+}
+header .head-user {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    margin-right: 10%;
+}
+.head-user .user-img {
+    width: 50px;
+    /* width: 20%; */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    aspect-ratio: 1/1;
+    background: var(--trang);
+    box-shadow: 0 0 10px var(--hongPastel);
+    border-radius: 50%;
+    /* overflow: hidden; */
+    position: relative;
+}
+.head-user .user-img img {
+    width: 90%;
+    filter: drop-shadow(0 0 2px var(--hongPastel));
+}
+.head-user .user-name {
+    white-space: nowrap;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: var(--trang);
+    text-shadow: 0 0 10px var(--hongPastel);
+}
+.head-user .user-img:hover .user-dropdown {
+    display: block;
+}
+.head-user .user-dropdown {
+    display: none;
+    position: absolute;
+    top: 120%;
+    left: 0;
+    padding: 5px;
+    border-radius: 5px;
+    background: var(--hongPhanNhat);
+    box-shadow: 0 2px 10px var(--hongPastel);
+    transition: all 0.3s linear;
+}
+.head-user .user-dropdown li {
+    padding: 8px 20px;
+    white-space: nowrap;
+    font-size: 17px;
+    color: var(--trang);
+    border-radius: 5px;
+    text-shadow: 0 0 10px var(--hongPastel);
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+.head-user .user-dropdown li:hover {
+    background: var(--hongPastel);
+}
+.head-user .user-dropdown li:active {
+    transition: all 0.1s;
+    opacity: 0.5;
+}
+.head-user .user-dropdown::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 10px;
+    border-width: 10px 15px;
+    border-style: solid;
+    border-color: transparent transparent var(--hongPhanNhat) transparent;
+    filter: drop-shadow(0 0 10px var(--hongPastel));
+}
+
+/* Nội dung chính */
+.container {
+    padding-top: 110px;
+    margin: 0 auto;
+    width: 80%;
+    height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* Nội dung bên trái */
+.container .content-left {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content-left .content-img {
+    width: 60%;
+    height: 22vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50% 50% 10px 10px;
+    box-shadow: 0 0 20px var(--hongDaoNhe);
+    overflow: hidden;
+}
+.content-left .content-img img {
+    width: 80%;
+    padding-top: 30px;
+    filter: drop-shadow(0 0 10px var(--hongDaoNhe));
+}
+/* Nội dung bên phải */
+.container .content-right {
+    width: 50%;
+    margin-left: 10px;
+    color: var(--hongCanhSen);
+    font-size: 18px;
+    line-height: 2;
+    text-shadow: 0 0 20px var(--hongDaoNhe);
+}
+.content-right .content-btns {
+    display: flex;
+    margin-top: 15px;
+}
+.content-btns .btn {
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    color: var(--trang);
+    background: var(--hongPastel);
+    padding: 10px 18px;
+    border-radius: 50px;
+    border: solid 2px var(--trang);
+    box-shadow: 0 4px 10px var(--hongDaoNhe);
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+.content-btns .btn.btn-signup {
+    margin-right: 15px;
+}
+.content-btns .btn:hover {
+    color: var(--hongCanhSen);
+    background: var(--trang);
+    border: solid 2px var(--hongPhanNhat);
+    translate: 0 -2px;
+    box-shadow: 0 6px 10px var(--hongPastel);
+}
+.content-btns .btn:active {
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    translate: 0 2px;
+    box-shadow: 0 2px 5px var(--hongPastel);
+}
+
+
+/* Modal đăng ký/đăng nhập */
+.modal  {
+    position: fixed;
+    top: 50%;
+    right: 30%;
+    left: 30%;
+    transform: translateY(-50%);
+    padding: 20px;
+    border-radius: 8px;
+    background: var(--hongPhanNhat);
+    box-shadow: 0 0 20px var(--trang);
+    animation: fadeIn ease 0.5s;
+}
+.modal .btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    padding: 5px;
+    color: var(--trang);
+    text-shadow: 0 0 10px var(--hongPastel);
+    outline-color: var(--trang);
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: all 0.3s linear;
+}
+.modal .btn-close:hover {
+    color: red;
+}
+.modal .head-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 34px;
+    letter-spacing: 0.5px;
+    color: var(--trang);
+    text-shadow: 0 0 20px var(--hongPastel);
+}
+.modal .modal-form {
+    margin: 30px 50px;
+}
+.modal .modal-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--trang);
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 10px var(--hongPastel);
+}
+.modal-form input {
+    width: 100%;
+    font-size: 16px;
+    padding: 8px 12px;
+    border: 1px solid var(--hongPastel);
+    border-radius: 5px;
+    outline: none;
+}
+.modal-form input:focus {
+    border-color: var(--hongCanhSen);
+    box-shadow: 0 0 5px var(--hongCanhSen);
+}
+.modal .form-btns {
+    margin: 40px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form-btns .btn {
+    color: var(--hongCanhSen);
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    background: var(--trang);
+    padding: 8px 20px;
+    outline-color: var(--hongPastel);
+    border: 2px solid var(--hongPastel);
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px var(--hongPastel);
+    transition: all 0.3s linear;
+}
+.form-btns .btn:hover {
+    color: var(--trang);
+    background: var(--hongCanhSen);
+    border: solid 2px var(--trang);
+    translate: 0 -3px;
+    box-shadow: 0 6px 10px var(--hongCanhSen);
+}
+.form-btns .btn:active {
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    translate: 0 2px;
+    box-shadow: 0 2px 10px var(--hongCanhSen);
+}
+
+/* Thêm lớp hiệu ứng khi thoát */
+.modal.fadeOut {
+    animation: fadeOut ease 0.5s;
+}
+
+/* Lớp làm mờ */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--hongPhanNhat);
+    opacity: 0.5;
+}
+
+.none {
+    display: none !important;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(-50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-50%) scale(0.5);
+    }
+}
