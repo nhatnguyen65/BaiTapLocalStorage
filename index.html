@@ -29,7 +29,7 @@
                 
                 <div class="user-dropdown">
                     <ul>
-                        <li onclick="logout()">Đăng xuất</li>
+                        <li onclick="logout(true)">Đăng xuất</li>
                         <li onclick="doiMatKhau()">Đổi mật khẩu</li>
                         <li onclick="xoaTaiKhoan()">Xoá tài khoản</li>
                     </ul>
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <!-- Nút xoá data -->
+    <!-- Nút xoá dữ liệu LocalStorage -->
     <button class="btn-clearData" onclick="clearData()">✕</button>
 
     <!-- Lớp làm mờ -->
@@ -86,6 +86,12 @@
         <div class="form-btns">
             <input class="btn" onclick="changeData(this.value)" type="button" value="button">
         </div>
+    </div>
+
+    <!-- Ô thông báo -->
+    <div class="alertBox none">
+        <h3 class="alert-head">Thông báo</h3>
+        <p class="alert-message">Thông báo</p>
     </div>
     
     

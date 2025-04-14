@@ -1,12 +1,3 @@
-/*
-    Yêu cầu: 1.tạo 2 trang index, trang nguồn(2 input: tên, mật khẩu, nút xem(input'submit'))
-    2. click tạo ra 1 ô đăng nhập nằm giữa ở trên trang cũ, thoát
-    3. Khi ấn đăng nhập lấy dữ liệu từ local để xem tài khoản có tồn tại hay không
-        - Có thì hiện tên tài khoản lên góc
-            + alert thông báo 
-            + loại bỏ nút login thay thành tên tài khoản
-        - Sai thì đăng nhập lại
-*/
 // Dữ liệu mở đóng modal
 const overlay = document.querySelector('.overlay');
 const modal = document.querySelector('.modal');
@@ -16,6 +7,7 @@ const formName = document.querySelector('.form-name');
 const formPassword1_lable = document.querySelector('.form-password1 label');
 const formPassword2 = document.querySelector('.form-password2');
 const formPassword3 = document.querySelector('.form-password3');
+const alertBox = document.querySelector('.alertBox');
 
 //Dữ liệu hiện user và thanh đổi content
 const headBtns = document.querySelector('.head-btns');
@@ -69,12 +61,23 @@ function hideContent(name) {
     contentTextBtn.textContent = `Cảm ơn bạn đã đăng ký/đăng nhập vào website của tôi 😘`;
 }
 
+// Ô thông báo
+function autoAlert(message) {
+    alertBox.querySelector('.alert-message').textContent = message;
+    alertBox.classList.remove('none');
+    setTimeout(() => {
+        alertBox.classList.add('alertBoxOut');
+        setTimeout(() => {
+            alertBox.classList.add('none');
+            alertBox.classList.remove('alertBoxOut');
+        }, 300);
+    }, 1000);
+}
+
 // Sign-up & Log-in
 function kiemTraValue(name, pw1, pw2, pw3) {
     if(!name || !pw1 || !pw2 || !pw3) {
-        setTimeout(() => {
-            alert(`Không được để dữ liệu trống !`);
-        }, 300);
+        autoAlert(`Không được để dữ liệu trống !`);
         return false;
     }
     return true;
@@ -103,18 +106,20 @@ function signup() {
                 taiKhoan.push(newTK);
                 localStorage.setItem('TaiKhoan', JSON.stringify(taiKhoan));
                 closeModal(true);
+                autoAlert(`Bạn đã đăng ký tài khoản ${newName} thành công <3`);
                 setTimeout(() => {
-                    alert(`Bạn đã đăng ký tài khoản ${newName} thành công <3`);
                     hideContent(newName);
                 }, 300);
             }
             else {
-                alert(`Xác thực mật khẩu sai, vui lòng nhập lại !`);
+                autoAlert(`Xác thực mật khẩu sai, vui lòng nhập lại !`);
             }
         }
         else {
-            alert(`Tài khoản ${newName} đã tồn tại, vui lòng dùng tên khác !`);
-            resetModal();
+            autoAlert(`Tài khoản ${newName} đã tồn tại, vui lòng dùng tên khác !`);
+            setTimeout(() => {
+                resetModal();
+            }, 300);
         }
     }
 }
@@ -131,20 +136,21 @@ function login() {
         if(element) {
             if(element.password === password) {
                 closeModal(true);
+                autoAlert(`Bạn đã đăng nhập tài khoản ${name} thành công <3`);
                 setTimeout(() => {
-                    alert(`Bạn đã đăng nhập tài khoản ${name} thành công <3`);
                     hideContent(name);
                 }, 300);
             }
             else {
-                alert(`Nhập mật khẩu sai, vui lòng nhập lại !`);
+                autoAlert(`Nhập mật khẩu sai, vui lòng nhập lại !`);
             }
         }
         else {
-            alert(`Tài khoản ${name} chưa được đăng ký, vui lòng đăng ký tài khoản trước !`);
+            autoAlert(`Tài khoản ${name} chưa được đăng ký, vui lòng đăng ký tài khoản trước !`);
         }
     }
 }
+// Xác định công việc
 function changeData(value) {
     switch(value) {
         case 'Sign Up':
@@ -162,13 +168,18 @@ function changeData(value) {
     }
 }
 // Log-out
-function logout() {
+function logout(value) {
     resetModal();
-    headUser.classList.add('none');
-    headBtns.classList.remove('none');
-    contentBtns.classList.remove('none');
-    contentHi.textContent = `Chào mừng bạn đến với website của tôi ❤️`;
-    contentTextBtn.textContent = `Hãy đăng ký/đăng nhập để biết thêm chi tiết !`;
+    if(value) {
+        autoAlert(`Bạn đã đăng xuất tài khoản`);
+    }
+    setTimeout(() => {
+        headUser.classList.add('none');
+        headBtns.classList.remove('none');
+        contentBtns.classList.remove('none');
+        contentHi.textContent = `Chào mừng bạn đến với website của tôi ❤️`;
+        contentTextBtn.textContent = `Hãy đăng ký/đăng nhập để biết thêm chi tiết !`;
+    }, 300);
 }
 // Thay đổi mật khẩu
 function changePassword() {
@@ -185,23 +196,26 @@ function changePassword() {
                     return element.name === name;
                 });
                 if(newPassword === password2) {
-                    taiKhoan[index].password = newPassword;
-                    localStorage.setItem('TaiKhoan', JSON.stringify(taiKhoan));
-                    closeModal(true);
-                    setTimeout(() => {
-                        alert(`Bạn đã đổi mật khẩu tài khoản ${name} thành công <3`);
-                    }, 300);
+                    if(password1 !== newPassword) {
+                        taiKhoan[index].password = newPassword;
+                        localStorage.setItem('TaiKhoan', JSON.stringify(taiKhoan));
+                        closeModal(true);
+                        autoAlert(`Bạn đã đổi mật khẩu tài khoản ${name} thành công <3`);
+                    }
+                    else {
+                        autoAlert(`Mật khẩu mới không được trùng với mật khẩu cũ, vui lòng nhập lại !`);
+                    }
                 }
                 else {
-                    alert(`Xác thực mật khẩu sai, vui lòng nhập lại !`);
+                    autoAlert(`Xác thực mật khẩu sai, vui lòng nhập lại !`);
                 }
             }
             else {
-                alert(`Nhập mật khẩu sai, vui lòng nhập lại !`);
+                autoAlert(`Nhập mật khẩu sai, vui lòng nhập lại !`);
             }
         }
         else {
-            alert(`Tài khoản ${name} chưa được đăng ký !`);
+            autoAlert(`Tài khoản ${name} chưa được đăng ký !`);
         }
     }
 }
@@ -227,17 +241,15 @@ function deleteAcc() {
                 taiKhoan.splice(index, 1);
                 localStorage.setItem('TaiKhoan', JSON.stringify(taiKhoan));
                 closeModal(true);
-                setTimeout(() => {
-                    logout();
-                    alert(`Bạn đã xoá thành công tài khoản ${name} !`);
-                }, 300);
+                logout();
+                autoAlert(`Bạn đã xoá thành công tài khoản ${name} !`);
             }
             else {
-                alert(`Nhập mật khẩu/xác thực mật khẩu sai, vui lòng nhập lại !`);
+                autoAlert(`Nhập mật khẩu/xác thực mật khẩu sai, vui lòng nhập lại !`);
             }
         }
         else {
-            alert(`Tài khoản ${name} chưa được đăng ký nên không thể xoá !`);
+            autoAlert(`Tài khoản ${name} chưa được đăng ký nên không thể xoá !`);
         }
     }
 }
@@ -247,7 +259,7 @@ function xoaTaiKhoan() {
     modalBtn.value = 'Delete Account';
 }
 
-// Clear data
+// Nút xoá dữ liệu LocalStorage
 function clearData() {
     if(confirm(`Bạn có chắc muốn xoá hết dữ liệu tài khoản không !`)) {
         localStorage.removeItem('TaiKhoan');
