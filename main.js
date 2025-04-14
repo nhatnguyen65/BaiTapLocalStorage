@@ -6,7 +6,6 @@
             + alert thông báo 
             + loại bỏ nút login thay thành tên tài khoản
         - Sai thì đăng nhập lại
-    
 */
 // Dữ liệu mở đóng modal
 const overlay = document.querySelector('.overlay');
@@ -73,7 +72,9 @@ function hideContent(name) {
 // Sign-up & Log-in
 function kiemTraValue(name, pw1, pw2, pw3) {
     if(!name || !pw1 || !pw2 || !pw3) {
-        alert(`Không được để dữ liệu trống !`);
+        setTimeout(() => {
+            alert(`Không được để dữ liệu trống !`);
+        }, 300);
         return false;
     }
     return true;
@@ -166,16 +167,12 @@ function logout() {
     headUser.classList.add('none');
     headBtns.classList.remove('none');
     contentBtns.classList.remove('none');
-    contentHi.textContent = `Chào mừng bạn đến với website của tôi 💖`;
+    contentHi.textContent = `Chào mừng bạn đến với website của tôi ❤️`;
     contentTextBtn.textContent = `Hãy đăng ký/đăng nhập để biết thêm chi tiết !`;
 }
 // Thay đổi mật khẩu
 function changePassword() {
-    let taiKhoan;
-    if(localStorage.getItem('TaiKhoan') === null)
-        taiKhoan = [];
-    else
-        taiKhoan = JSON.parse(localStorage.getItem('TaiKhoan'));
+    let taiKhoan = JSON.parse(localStorage.getItem('TaiKhoan'));
     let name = document.querySelector('#name').value;
     let password1 = document.querySelector('#password1').value;
     let newPassword = document.querySelector('#password3').value;
@@ -216,11 +213,7 @@ function doiMatKhau() {
 }
 // Xoá tài khoản
 function deleteAcc() {
-    let taiKhoan;
-    if(localStorage.getItem('TaiKhoan') === null)
-        taiKhoan = [];
-    else
-        taiKhoan = JSON.parse(localStorage.getItem('TaiKhoan'));
+    let taiKhoan = JSON.parse(localStorage.getItem('TaiKhoan'));
     let name = document.querySelector('#name').value;
     let password1 = document.querySelector('#password1').value;
     let password2 = document.querySelector('#password2').value;
@@ -252,4 +245,14 @@ function xoaTaiKhoan() {
     openModal(true);
     headModal.textContent = 'Delete Account';
     modalBtn.value = 'Delete Account';
+}
+
+// Clear data
+function clearData() {
+    if(confirm(`Bạn có chắc muốn xoá hết dữ liệu tài khoản không !`)) {
+        localStorage.removeItem('TaiKhoan');
+        setTimeout(() => {
+            logout();
+        }, 300);
+    }
 }
