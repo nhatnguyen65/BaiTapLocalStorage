@@ -261,10 +261,10 @@ function xoaTaiKhoan() {
 
 // Nút xoá dữ liệu LocalStorage
 function clearData() {
-    if(confirm(`Bạn có chắc muốn xoá hết dữ liệu tài khoản không !`)) {
-        localStorage.removeItem('TaiKhoan');
-        setTimeout(() => {
+    setTimeout(() => {
+        if(confirm(`Bạn có chắc muốn xoá hết dữ liệu tài khoản không !`)) {
+            localStorage.removeItem('TaiKhoan');
             logout();
-        }, 300);
-    }
+        }
+    }, 300);
 }
